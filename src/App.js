@@ -9,6 +9,8 @@ function App() {
 
   const [presupuesto, guardarPresupuesto] = useState(0);
   const [restante, guardarRestante] = useState(0)
+  //carga condicional
+  const [mostrarpregunta, actualizarPregunda] = useState(true);
 
   return (
     <div className="container">
@@ -17,19 +19,28 @@ function App() {
 
         <div className="contenido-principal contenido">
 
-          <Pregunta
-            guardarPresupuesto={guardarPresupuesto}
-            guardarRestante={guardarRestante}
-          />
+          { 
+          mostrarpregunta ? 
+            (<Pregunta
+              guardarPresupuesto={guardarPresupuesto}
+              guardarRestante={guardarRestante}
+              actualizarPregunda={actualizarPregunda}
+            />
+            ) : (
+              <div className="row">
+                <div className="one-half column">
+                  <Formulario/>
+                </div>
+                <div className="one-half column">
+                  2
+                </div>
+              </div>
+            )
+         }
 
-          <div className="row">
-            <div className="one-half column">
-              <Formulario/>
-            </div>
-            <div className="one-half column">
-              2
-            </div>
-          </div>
+          
+
+          
 
         </div>
       </header>
